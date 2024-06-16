@@ -6,6 +6,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 
 
@@ -20,10 +21,11 @@ fun NavGraph(
         startDestination = startDestination
     ){
 
-        composable<Route.HomeScreen> {
-
+        navigation<Route.HomeScreen>(
+            startDestination = Route.HomeScreen
+        ){
+            signEasy()
         }
-
 
 
 

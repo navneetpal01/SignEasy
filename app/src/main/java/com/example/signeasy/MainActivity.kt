@@ -25,13 +25,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
-            SignEasyTheme {
-                val navController = rememberNavController()
-                NavGraph(
-                    navController = navController,
-                    startDestination = Route.HomeScreen
-                )
-            }
+
         }
     }
 
