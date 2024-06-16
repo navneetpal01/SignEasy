@@ -7,6 +7,9 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.compose.rememberNavController
+import com.example.signeasy.presentation.nvgraph.NavGraph
+import com.example.signeasy.presentation.nvgraph.Route
 import com.example.signeasy.ui.theme.SignEasyTheme
 
 
@@ -23,7 +26,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SignEasyTheme {
-
+                val navController = rememberNavController()
+                NavGraph(
+                    navController = navController,
+                    startDestination = Route.HomeScreen
+                )
             }
         }
     }

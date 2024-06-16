@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("plugin.serialization") version "1.9.23"
 }
 
 android {
@@ -69,4 +70,7 @@ dependencies {
 
     //Splash Api
     implementation(libs.splash.api)
+    //Navigation
+    implementation(libs.compose.navigation)
+    implementation(libs.kotlin.serialization)
 }
