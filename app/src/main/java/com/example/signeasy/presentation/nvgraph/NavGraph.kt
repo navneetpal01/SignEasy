@@ -1,6 +1,8 @@
 package com.example.signeasy.presentation.nvgraph
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -29,9 +31,15 @@ fun NavGraph(
 
 
 
-
-
-
-
-
 }
+
+class MainActions(navController : NavHostController){
+    val moveToInbox : (NavBackStackEntry) -> Unit = {from ->
+        if (from.lifecycleIsResumed()){
+            navController.navigate(Route.InboxScreen)
+        }
+    }
+}
+
+private fun NavBackStackEntry.lifecycleIsResumed() =
+    this.lifecycle.currentState == Lifecycle.State.RESUMED

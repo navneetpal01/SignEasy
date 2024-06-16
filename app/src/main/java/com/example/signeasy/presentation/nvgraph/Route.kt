@@ -8,4 +8,7 @@ sealed class Route{
 
     @Serializable
     object HomeScreen : Route()
+
+    @Serializable
+    object InboxScreen : Route()
 }
