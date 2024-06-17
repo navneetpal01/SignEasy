@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
-
+            SignEasyApp()
         }
     }
 
