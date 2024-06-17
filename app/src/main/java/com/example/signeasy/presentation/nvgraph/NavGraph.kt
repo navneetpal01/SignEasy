@@ -38,7 +38,7 @@ fun NavGraph(
 class MainActions(navController : NavHostController){
     val moveToInbox : (NavBackStackEntry) -> Unit = {from ->
         if (from.lifecycleIsResumed()){
-            navController.navigate(Route.InboxScreen)
+
         }
     }
 }

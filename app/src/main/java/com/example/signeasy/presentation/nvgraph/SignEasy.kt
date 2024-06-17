@@ -13,10 +13,14 @@ import com.example.signeasy.presentation.inbox.InboxScreen
 fun NavGraphBuilder.signEasy() {
 
 
-    composable<Route.HomeScreen> {
+    composable(
+        route = SignEasyTabs.HOME.route
+    ) {
         HomeScreen()
     }
-    composable<Route.InboxScreen> {
+    composable(
+        route = SignEasyTabs.INBOX.route
+    ) {
         InboxScreen()
     }
 
@@ -28,6 +32,7 @@ enum class SignEasyTabs(
     @DrawableRes val icon: Int,
     val route: String
 ) {
+
     HOME(title = R.string.home, icon = R.drawable.home, route = SignEasyDestinations.HOME_ROUTE),
     INBOX(title = R.string.inbox, icon = R.drawable.inbox, route = SignEasyDestinations.Inbox_ROUTE)
 
