@@ -15,7 +15,7 @@ import androidx.navigation.compose.rememberNavController
 fun NavGraph(
     modifier : Modifier = Modifier,
     navController : NavHostController = rememberNavController(),
-    startDestination : Route = Route.HomeScreen
+    startDestination : String = Route.HomeScreen.route
 ){
 
     NavHost(
@@ -24,13 +24,12 @@ fun NavGraph(
         startDestination = startDestination
     ){
 
-        navigation<Route.HomeScreen>(
-            startDestination = Route.HomeScreen
+        navigation(
+            route = Route.HomeScreen.route,
+            startDestination = SignEasyTabs.HOME.route
         ){
             signEasy()
         }
-
-
 
     }
 

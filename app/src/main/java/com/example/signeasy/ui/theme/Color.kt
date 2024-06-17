@@ -11,7 +11,7 @@ val Pink40 = Color(0xFF7D5260)
 
 
 val System_White = Color(0xFFF5F5F5)
-val System__Bright_Blue = Color(0xFF407FF7)
+val System_Bright_Blue = Color(0xFF407FF7)
 val Smoky_Gray = Color(0xFF7B828A)
 val Dark_Slate_Gray = Color(0xFF39434F)
 val Very_Lite_Gray = Color(0xFFD7D9DC)

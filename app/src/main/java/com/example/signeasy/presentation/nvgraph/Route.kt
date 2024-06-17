@@ -3,10 +3,10 @@ package com.example.signeasy.presentation.nvgraph
 import kotlinx.serialization.Serializable
 
 
-@Serializable
-sealed class Route{
+sealed class Route(
+    val route : String
+){
 
-    @Serializable
-    object HomeScreen : Route()
+    object HomeScreen : Route(route = "HomeScreen")
 
 }
