@@ -29,12 +29,13 @@ fun NavGraphBuilder.signEasy() {
 
 enum class SignEasyTabs(
     @StringRes val title: Int,
-    @DrawableRes val icon: Int,
+    @DrawableRes val icon_outlined: Int,
+    @DrawableRes val icon_filled : Int,
     val route: String
 ) {
 
-    HOME(title = R.string.home, icon = R.drawable.home, route = SignEasyDestinations.HOME_ROUTE),
-    INBOX(title = R.string.inbox, icon = R.drawable.inbox, route = SignEasyDestinations.Inbox_ROUTE)
+    HOME(title = R.string.home, icon_outlined = R.drawable.home_outlined, icon_filled = R.drawable.home_filled, route = SignEasyDestinations.HOME_ROUTE),
+    INBOX(title = R.string.inbox, icon_outlined = R.drawable.inbox_outlined, icon_filled = R.drawable.inbox_filled, route = SignEasyDestinations.Inbox_ROUTE)
 
 }
 
