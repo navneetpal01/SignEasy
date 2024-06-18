@@ -20,6 +20,10 @@ class MainActivity : ComponentActivity() {
             statusBarStyle = SystemBarStyle.light(
                 Color.TRANSPARENT,
                 Color.TRANSPARENT
+            ),
+            navigationBarStyle = SystemBarStyle.light(
+                Color.WHITE,
+                Color.WHITE
             )
         )
         installSplashScreen()
