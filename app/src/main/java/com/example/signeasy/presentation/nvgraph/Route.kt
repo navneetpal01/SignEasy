@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 sealed class Route(
     val route : String
 ){
-
     object HomeScreen : Route(route = "HomeScreen")
 
 }
