@@ -1,19 +1,20 @@
 package com.example.signeasy
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -66,43 +67,39 @@ fun SignEasyApp() {
         val scope = rememberCoroutineScope()
 
         AppBottomSheet(state = scaffoldState) {
-            Box(
+            Scaffold(
                 modifier = Modifier
                     .fillMaxSize(),
-            ) {
-                Scaffold(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    containerColor = System_White,
-                    bottomBar = {
-                        AppBottomBar(navController = navController, tabs = tabs)
-                    }
-                ) { paddingValues ->
-                    NavGraph(
+                containerColor = System_White,
+                bottomBar = {
+                    AppBottomBar(navController = navController, tabs = tabs)
+                },
+                floatingActionButton = {
+                    FloatingActionButton(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .padding(paddingValues),
-                        navController = navController,
-                        startDestination = Route.HomeScreen.route
-                    )
+                            .height(20.dp)
+                            .width(60.dp),
+                        onClick = {
+                            scope.launch {
+                                scaffoldState.bottomSheetState.show()
+                            }
+                        },
+                        containerColor = System_Bright_Blue,
+                        contentColor = White,
+                        elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 0.dp),
+                        shape = RoundedCornerShape(12.dp),
+                    ) {
+                        Icon(painter = painterResource(id = R.drawable.add), contentDescription = null)
+                    }
                 }
-                FloatingActionButton(
+            ) { paddingValues ->
+                NavGraph(
                     modifier = Modifier
-                        .size(120.dp)
-                        .align(Alignment.BottomCenter)
-                        .padding(all = 30.dp),
-                    onClick = {
-                        scope.launch {
-                            scaffoldState.bottomSheetState.show()
-                        }
-                    },
-                    containerColor = System_Bright_Blue,
-                    contentColor = White,
-                    elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 0.dp),
-                    shape = CircleShape,
-                ) {
-                    Icon(painter = painterResource(id = R.drawable.add), contentDescription = null)
-                }
+                        .fillMaxSize()
+                        .padding(paddingValues),
+                    navController = navController,
+                    startDestination = Route.HomeScreen.route
+                )
             }
         }
     }
@@ -185,6 +182,13 @@ private fun AppBottomSheet(state: BottomSheetScaffoldState, mainContent: @Compos
     ) {
         mainContent.invoke()
     }
+
+}
+
+fun main() {
+
+    val map = mutableMapOf<Int, String>()
+
 
 }
 
