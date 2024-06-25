@@ -38,9 +38,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.signeasy.presentation.bottomsheet.AppBottomSheet
 import com.example.signeasy.presentation.nvgraph.NavGraph
 import com.example.signeasy.presentation.nvgraph.Route
 import com.example.signeasy.presentation.nvgraph.SignEasyTabs
+import com.example.signeasy.presentation.toolbars.AppBottomBar
+import com.example.signeasy.presentation.toolbars.AppTopBar
 import com.example.signeasy.ui.theme.SignEasyTheme
 import com.example.signeasy.ui.theme.Smoky_Gray
 import com.example.signeasy.ui.theme.System_Bright_Blue
@@ -72,6 +75,9 @@ fun SignEasyApp() {
                     modifier = Modifier
                         .fillMaxSize(),
                     containerColor = System_White,
+                    topBar = {
+                        AppTopBar()
+                    },
                     bottomBar = {
                         AppBottomBar(navController = navController, tabs = tabs)
                     }
@@ -110,84 +116,6 @@ fun SignEasyApp() {
     }
 }
 
-@Composable
-private fun AppBottomBar(navController: NavHostController, tabs: Array<SignEasyTabs>) {
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route ?: SignEasyTabs.HOME.route
-    val routes = remember { SignEasyTabs.values().map { it.route } }
-    if (currentRoute in routes) {
-        NavigationBar(
-            modifier = Modifier.windowInsetsBottomHeight(
-                WindowInsets.navigationBars.add(WindowInsets(bottom = 60.dp))
-            ),
-            containerColor = White,
-        ) {
-            tabs.forEach { tab ->
-                NavigationBarItem(
-                    selected = currentRoute == tab.route,
-                    onClick = {
-                        if (tab.route != currentRoute) {
-                            navController.navigate(tab.route) {
-                                popUpTo(navController.graph.startDestinationId) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        }
-                    },
-                    icon = {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center
-                        ) {
-                            Icon(
-                                painter = painterResource(id = if (currentRoute == tab.route) tab.icon_filled else tab.icon_outlined),
-                                contentDescription = "null",
-                                modifier = Modifier
-                                    .size(30.dp)
-                            )
-                            Text(
-                                text = stringResource(id = tab.title),
-                                fontFamily = satoshi_regular,
-                                fontSize = 12.sp
-                            )
-                        }
-                    },
-                    colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = System_Bright_Blue,
-                        unselectedIconColor = Smoky_Gray,
-                        selectedTextColor = System_Bright_Blue,
-                        unselectedTextColor = Smoky_Gray,
-                        indicatorColor = White,
-                    )
-                )
-            }
-        }
-    }
-}
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun AppBottomSheet(state: BottomSheetScaffoldState, mainContent: @Composable () -> Unit) {
-    BottomSheetScaffold(
-        scaffoldState = state,
-        sheetContent = {
-            //TODO
-            Column(
-                modifier = Modifier
-                    .fillMaxSize(0.4f)
-            ) {
-
-            }
-        },
-        modifier = Modifier
-            .navigationBarsPadding()
-            .fillMaxSize()
-    ) {
-        mainContent.invoke()
-    }
-
-}
 
 
