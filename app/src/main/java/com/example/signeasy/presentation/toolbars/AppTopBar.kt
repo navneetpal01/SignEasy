@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -16,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.signeasy.R
 import com.example.signeasy.ui.theme.Dark_Slate_Gray
 import com.example.signeasy.ui.theme.Dove_Gray
@@ -30,7 +33,7 @@ fun AppTopBar() {
         modifier = Modifier
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceAround
+        horizontalArrangement = Arrangement.Absolute.SpaceEvenly
     ) {
 
         IconButton(
@@ -47,7 +50,7 @@ fun AppTopBar() {
 
         Row(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(0.7f)
 //                .border(width = 1.dp, color = Very_Lite_Gray, shape = RoundedCornerShape(30.dp))
                 .background(color = Very_Lite_Gray, shape = RoundedCornerShape(30.dp)),
             horizontalArrangement = Arrangement.SpaceAround,
@@ -62,18 +65,22 @@ fun AppTopBar() {
             )
             Text(
                 text = "Search file, template, tool...",
+                fontSize = 8.sp,
                 fontFamily = satoshi_regular,
                 color = Dove_Gray
             )
         }
-        
-        Box(
-            modifier = Modifier
-                .background(color = Very_Lite_Gray),
-            contentAlignment = Alignment.Center,
 
-        ){
-
+        IconButton(
+            onClick = {
+                //TODO
+            }
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.sidebar),
+                contentDescription = "Sidebar",
+                tint = Dark_Slate_Gray
+            )
         }
 
 
