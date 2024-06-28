@@ -107,7 +107,9 @@ fun SignEasyApp() {
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.add),
-                        contentDescription = null
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(25.dp)
                     )
                 }
 
