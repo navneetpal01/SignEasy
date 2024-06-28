@@ -1,19 +1,14 @@
 package com.example.signeasy.presentation.toolbars
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -56,7 +51,6 @@ fun AppTopBar() {
                 .fillMaxWidth(0.7f)
 //                .border(width = 1.dp, color = Very_Lite_Gray, shape = RoundedCornerShape(30.dp))
                 .background(color = Very_Lite_Gray, shape = RoundedCornerShape(30.dp)),
-            horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
@@ -67,8 +61,8 @@ fun AppTopBar() {
                     .padding(8.dp)
             )
             Text(
-                text = "Search file, template, tool...",
-                fontSize = 8.sp,
+                text = "Search agreements",
+                fontSize = 15.sp,
                 fontFamily = satoshi_regular,
                 color = Dove_Gray
             )
