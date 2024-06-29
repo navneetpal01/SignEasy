@@ -8,10 +8,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.ui.graphics.toArgb
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.navigation.compose.rememberNavController
-import com.example.signeasy.presentation.nvgraph.NavGraph
-import com.example.signeasy.presentation.nvgraph.Route
-import com.example.signeasy.ui.theme.SignEasyTheme
 import com.example.signeasy.ui.theme.System_White
 
 
