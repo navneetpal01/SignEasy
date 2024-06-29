@@ -4,17 +4,21 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SheetState
-import androidx.compose.material3.rememberBottomSheetScaffoldState
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -41,58 +45,60 @@ fun SignEasyApp() {
             SignEasyTabs.values()
         }
         val navController = rememberNavController()
-        val scaffoldState = rememberBottomSheetScaffoldState(
-            bottomSheetState = SheetState(skipPartiallyExpanded = true)
-        )
         val scope = rememberCoroutineScope()
-
-        AppBottomSheet(state = scaffoldState) {
-            Box(
+        val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+        var showBottomSheet by remember { mutableStateOf(false) }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .systemBarsPadding()
+        ) {
+            Scaffold(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxSize(),
+                containerColor = System_White,
+                topBar = {
+                    AppTopBar()
+                },
+                bottomBar = {
+                    AppBottomBar(navController = navController, tabs = tabs)
+                }
+            ) { paddingValues ->
+                NavGraph(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues),
+                    navController = navController,
+                    startDestination = Route.HomeScreen.route
+                )
+            }
+            FloatingActionButton(
+                modifier = Modifier
+                    .size(120.dp)
+                    .padding(30.dp)
+                    .align(Alignment.BottomCenter),
+                onClick = {
+                    showBottomSheet = true
+                },
+                containerColor = System_Bright_Blue,
+                contentColor = White,
+                elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 5.dp),
+                shape = CircleShape
             ) {
-                Scaffold(
+                Icon(
+                    painter = painterResource(id = R.drawable.add),
+                    contentDescription = null,
                     modifier = Modifier
-                        .fillMaxSize(),
-                    containerColor = System_White,
-                    topBar = {
-                        AppTopBar()
-                    },
-                    bottomBar = {
-                        AppBottomBar(navController = navController, tabs = tabs)
+                        .size(25.dp)
+                )
+            }
+            if (showBottomSheet) {
+                AppBottomSheet(
+                    state = sheetState,
+                    onDismiss = {
+                        showBottomSheet = false
                     }
-                ) { paddingValues ->
-                    NavGraph(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(paddingValues),
-                        navController = navController,
-                        startDestination = Route.HomeScreen.route
-                    )
-                }
-                FloatingActionButton(
-                    modifier = Modifier
-                        .size(120.dp)
-                        .padding(30.dp)
-                        .align(Alignment.BottomCenter),
-                    onClick = {
-                        scope.launch {
-                            scaffoldState.bottomSheetState.show()
-                        }
-                    },
-                    containerColor = System_Bright_Blue,
-                    contentColor = White,
-                    elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 5.dp),
-                    shape = CircleShape
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.add),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(25.dp)
-                    )
-                }
-
+                )
             }
         }
     }
