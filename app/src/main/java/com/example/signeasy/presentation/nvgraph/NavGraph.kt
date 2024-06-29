@@ -6,40 +6,38 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 
 
 @Composable
 fun NavGraph(
-    modifier : Modifier = Modifier,
-    navController : NavHostController = rememberNavController(),
-    startDestination : String = Route.HomeScreen.route
-){
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController(),
+    startDestination: String = Route.HomeScreen.route
+) {
 
     NavHost(
         modifier = modifier,
         navController = navController,
         startDestination = startDestination
-    ){
+    ) {
 
         navigation(
             route = Route.HomeScreen.route,
             startDestination = SignEasyTabs.HOME.route
-        ){
+        ) {
             signEasy()
         }
 
     }
 
 
-
 }
 
-class MainActions(navController : NavHostController){
-    val moveToInbox : (NavBackStackEntry) -> Unit = {from ->
-        if (from.lifecycleIsResumed()){
+class MainActions(navController: NavHostController) {
+    val moveToInbox: (NavBackStackEntry) -> Unit = { from ->
+        if (from.lifecycleIsResumed()) {
 
         }
     }

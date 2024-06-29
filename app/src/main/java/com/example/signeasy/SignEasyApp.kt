@@ -25,7 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.zIndex
 import androidx.navigation.compose.rememberNavController
 import com.example.signeasy.presentation.bottomsheet.AppBottomSheet
 import com.example.signeasy.presentation.nvgraph.NavGraph
@@ -111,7 +110,6 @@ fun SignEasyApp() {
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
-                            .zIndex(1f)
                             .background(color = BottomSheetDefaults.ScrimColor)
                     )
                 }

@@ -31,10 +31,11 @@ import com.example.signeasy.ui.theme.satoshi_regular
 fun AppTopBar() {
 
     val topPadding = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
+    val bottomPadding = topPadding / 2
 
     Row(
         modifier = Modifier
-            .padding(top = topPadding)
+            .padding(top = topPadding, bottom = bottomPadding)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Absolute.SpaceEvenly
