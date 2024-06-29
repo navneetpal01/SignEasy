@@ -3,9 +3,12 @@ package com.example.signeasy.presentation.toolbars
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -27,8 +30,11 @@ import com.example.signeasy.ui.theme.satoshi_regular
 @Composable
 fun AppTopBar() {
 
+    val topPadding = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
+
     Row(
         modifier = Modifier
+            .padding(top = topPadding)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Absolute.SpaceEvenly
