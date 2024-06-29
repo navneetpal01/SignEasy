@@ -1,31 +1,39 @@
 package com.example.signeasy.presentation.bottomsheet
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.material3.BottomSheetScaffold
+import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.SheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppBottomSheet(state: SheetState,onDismiss : () -> Unit) {
+fun AppBottomSheet(
+    state: BottomSheetScaffoldState,
+    modifier: Modifier,
+    context: @Composable () -> Unit
+) {
 
-    ModalBottomSheet(
-        sheetState = state,
-        onDismissRequest = onDismiss
+
+    BottomSheetScaffold(
+        modifier = modifier,
+        scaffoldState = state,
+        sheetContent = {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.45f)
+            ) {
+
+            }
+        },
     ) {
-        Column(
-            modifier = Modifier
-                .height(300.dp)
-                .fillMaxWidth()
-        ){
-
-        }
+        context.invoke()
     }
+
 
 }
