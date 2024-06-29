@@ -17,8 +17,6 @@ fun AppBottomSheet(
     modifier: Modifier,
     context: @Composable () -> Unit
 ) {
-
-
     BottomSheetScaffold(
         modifier = modifier,
         scaffoldState = state,
@@ -30,10 +28,8 @@ fun AppBottomSheet(
             ) {
 
             }
-        },
+        }
     ) {
         context.invoke()
     }
-
-
 }
