@@ -1,6 +1,9 @@
 package com.example.signeasy.presentation.toolbars
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -27,6 +30,7 @@ import com.example.signeasy.ui.theme.Very_Lite_Gray
 import com.example.signeasy.ui.theme.satoshi_regular
 
 
+@SuppressLint("UnrememberedMutableInteractionSource")
 @Composable
 fun AppTopBar() {
 
@@ -49,14 +53,17 @@ fun AppTopBar() {
             Icon(
                 painter = painterResource(id = R.drawable.sidebar),
                 contentDescription = "Sidebar",
-                tint = Dark_Slate_Gray
+                tint = Dark_Slate_Gray,
+                modifier = Modifier
+                    .clickable(interactionSource = MutableInteractionSource(), indication = null) {
+
+                    }
             )
         }
 
         Row(
             modifier = Modifier
                 .fillMaxWidth(0.7f)
-//                .border(width = 1.dp, color = Very_Lite_Gray, shape = RoundedCornerShape(30.dp))
                 .background(color = Very_Lite_Gray, shape = RoundedCornerShape(30.dp)),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -89,9 +96,11 @@ fun AppTopBar() {
                 tint = Dark_Slate_Gray,
                 modifier = Modifier
                     .size(17.dp)
+                    .clickable(interactionSource = MutableInteractionSource(), indication = null) {
+
+
+                    }
             )
         }
-
-
     }
 }

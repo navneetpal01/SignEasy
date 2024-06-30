@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.signeasy.presentation.bottomsheet.AppBottomSheet
 import com.example.signeasy.presentation.nvgraph.NavGraph
@@ -47,6 +48,8 @@ fun SignEasyApp() {
             SignEasyTabs.values()
         }
         val navController = rememberNavController()
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStackEntry?.destination?.route ?: SignEasyTabs.HOME.route
         val sheetState = rememberBottomSheetScaffoldState(
             bottomSheetState = SheetState(skipPartiallyExpanded = true)
         )
@@ -70,7 +73,9 @@ fun SignEasyApp() {
                         .fillMaxSize(),
                     containerColor = System_White,
                     topBar = {
-                        AppTopBar()
+                        if (currentDestination == SignEasyTabs.HOME.route) {
+                            AppTopBar()
+                        }
                     },
                     bottomBar = {
                         AppBottomBar(navController = navController, tabs = tabs)
