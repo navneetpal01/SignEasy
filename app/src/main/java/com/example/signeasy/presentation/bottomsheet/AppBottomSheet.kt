@@ -1,5 +1,6 @@
 package com.example.signeasy.presentation.bottomsheet
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,6 +9,7 @@ import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.example.signeasy.ui.theme.System_White
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -25,10 +27,11 @@ fun AppBottomSheet(
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight(0.45f)
+                    .background(System_White)
             ) {
 
             }
-        }
+        },
     ) {
         context.invoke()
     }

@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
@@ -183,6 +184,7 @@ private fun DetailsTab(
         Card(
             modifier = Modifier
                 .weight(0.47f)
+                .clip(RoundedCornerShape(10.dp))
                 .clickable(onClick = onActionRequiredClick),
             colors = CardDefaults.cardColors(containerColor = White),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
@@ -223,6 +225,7 @@ private fun DetailsTab(
         Card(
             modifier = Modifier
                 .weight(0.47f)
+                .clip(RoundedCornerShape(10.dp))
                 .clickable(onClick = onWaitingForOthersClick),
             colors = CardDefaults.cardColors(containerColor = White),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
