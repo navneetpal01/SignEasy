@@ -1,5 +1,6 @@
 package com.example.signeasy.presentation.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -51,7 +52,14 @@ fun HomeScreen() {
             )
         }
         item {
-            DetailsTab()
+            DetailsTab(
+                onActionRequiredClick = {
+
+                },
+                onWaitingForOthersClick = {
+
+                }
+            )
         }
     }
 }
@@ -62,7 +70,7 @@ private fun UsageCard(
 ) {
     Card(
         modifier = Modifier
-            .fillMaxWidth(0.9f),
+            .fillMaxWidth(0.94f),
         colors = CardDefaults.cardColors(containerColor = White),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         shape = RoundedCornerShape(10.dp)
@@ -160,33 +168,96 @@ private fun UsageCard(
 }
 
 @Composable
-private fun DetailsTab() {
+private fun DetailsTab(
+    actionRequired: Int = 1,
+    waitingForOthers: Int = 0,
+    onActionRequiredClick: () -> Unit,
+    onWaitingForOthersClick: () -> Unit
+) {
     Row(
         modifier = Modifier
-            .fillMaxWidth(0.9f),
+            .fillMaxWidth(0.94f),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceAround
     ) {
         Card(
             modifier = Modifier
-                .weight(0.45f)
-                .height(150.dp),
+                .weight(0.47f)
+                .clickable(onClick = onActionRequiredClick),
             colors = CardDefaults.cardColors(containerColor = White),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
             shape = RoundedCornerShape(10.dp)
         ) {
-
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                Text(
+                    text = "Action Required",
+                    fontFamily = satoshi_bold,
+                    fontSize = 18.sp,
+                    color = System_Black,
+                    modifier = Modifier
+                        .padding(vertical = 15.dp)
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                Text(
+                    text = "$actionRequired",
+                    fontFamily = satoshi_bold,
+                    fontSize = 30.sp,
+                    color = System_Bright_Blue,
+                    modifier = Modifier
+                        .padding(top = 5.dp, bottom = 10.dp)
+                )
+            }
         }
-        Spacer(modifier = Modifier.width(10.dp))
+        Spacer(modifier = Modifier.width(7.dp))
         Card(
             modifier = Modifier
-                .weight(0.45f)
-                .height(150.dp),
+                .weight(0.47f)
+                .clickable(onClick = onWaitingForOthersClick),
             colors = CardDefaults.cardColors(containerColor = White),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
             shape = RoundedCornerShape(10.dp)
         ) {
-
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                Text(
+                    text = "Waiting for Others",
+                    fontFamily = satoshi_bold,
+                    fontSize = 18.sp,
+                    color = System_Black,
+                    modifier = Modifier
+                        .padding(vertical = 15.dp)
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                Text(
+                    text = "$waitingForOthers",
+                    fontFamily = satoshi_bold,
+                    fontSize = 30.sp,
+                    color = System_Bright_Blue,
+                    modifier = Modifier
+                        .padding(top = 5.dp, bottom = 10.dp)
+                )
+            }
         }
     }
 }

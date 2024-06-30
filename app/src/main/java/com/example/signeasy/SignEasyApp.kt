@@ -1,5 +1,6 @@
 package com.example.signeasy
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -48,8 +49,6 @@ fun SignEasyApp() {
             SignEasyTabs.values()
         }
         val navController = rememberNavController()
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentDestination = navBackStackEntry?.destination?.route ?: SignEasyTabs.HOME.route
         val sheetState = rememberBottomSheetScaffoldState(
             bottomSheetState = SheetState(skipPartiallyExpanded = true)
         )
@@ -73,9 +72,7 @@ fun SignEasyApp() {
                         .fillMaxSize(),
                     containerColor = System_White,
                     topBar = {
-                        if (currentDestination == SignEasyTabs.HOME.route) {
                             AppTopBar()
-                        }
                     },
                     bottomBar = {
                         AppBottomBar(navController = navController, tabs = tabs)

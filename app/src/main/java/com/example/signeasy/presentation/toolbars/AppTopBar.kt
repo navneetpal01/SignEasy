@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.signeasy.R
@@ -55,9 +56,7 @@ fun AppTopBar() {
                 contentDescription = "Sidebar",
                 tint = Dark_Slate_Gray,
                 modifier = Modifier
-                    .clickable(interactionSource = MutableInteractionSource(), indication = null) {
-
-                    }
+                    .clickable(interactionSource = MutableInteractionSource(), indication = null) {}
             )
         }
 
@@ -78,7 +77,9 @@ fun AppTopBar() {
                 text = "Search agreements",
                 fontSize = 15.sp,
                 fontFamily = satoshi_regular,
-                color = Dove_Gray
+                color = Dove_Gray,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1
             )
         }
 
@@ -96,10 +97,7 @@ fun AppTopBar() {
                 tint = Dark_Slate_Gray,
                 modifier = Modifier
                     .size(17.dp)
-                    .clickable(interactionSource = MutableInteractionSource(), indication = null) {
-
-
-                    }
+                    .clickable(interactionSource = MutableInteractionSource(), indication = null) {}
             )
         }
     }
